@@ -2,10 +2,12 @@
 my %tab=();
 my %tab2=();
 my $valeur=0;
-my $ligne_avant="";
+my $ligne_before="";
+
+
 $first_name=$ARGV[0];
 $first_name=~s/..\/analysis\/Olfr3UTR_quantif\///;
-print $first_name;
+
 $filein ="< ../analysis/Olfr3UTR_quantif/$first_name";
 
 
@@ -15,7 +17,7 @@ open (MET ,$filein );
 	my @ligne=<MET>;
 	for (my $i=0; $i<=$#ligne; $i++){
 		chop$ligne[$i];
-		if ( $ligne[$i] ne $ligne_avant) {
+		if ( $ligne[$i] ne $ligne_before) {
 		
 
 			@j=split (/\t+/,$ligne[$i]);	
@@ -35,7 +37,7 @@ open (MET ,$filein );
 									$tab{$key}=$valeur2;
 									}
 								}
-							$ligne_avant =$ligne[$i]};
+							$ligne_before =$ligne[$i]};
 		}
 
   close MET;
@@ -45,7 +47,7 @@ open (MET ,$filein );
 			{$quantif=0;
 			$exprTotl=0;
 			$abond=0;
-			$utr_avant=0;
+			$utr_before=0;
 
 				my @j=split (/\s+/,$tab{$key});
 				$lastindex=@j;
@@ -64,14 +66,14 @@ open (MET ,$filein );
 				
 				for ($i=0; $i< $lastindex; $i++){
 				$quant=$tab2{$tabutr[$i]}-$quantif;
-				$segment_utr=$tabutr[$i]-$utr_avant;
+				$segment_utr=$tabutr[$i]-$utr_before;
 				if ($segment_utr!=0){$exp[$i]=$quant/$segment_utr;}
 				
 				
 				$utrprint[$i]="$key\t$tabutr[$i]\t$segment_utr\t$quant\t$exp[$i]\t";
 				#$exp[$i]=$tab2{$tabutr[$i]}/$tabutr[$i];
 				$quantif=$tab2{$tabutr[$i]};
-				$utr_avant=$tabutr[$i];
+				$utr_before=$tabutr[$i];
 				}
 				for ($i=$lastindex-1; $i> -1; $i--){
 

@@ -2,8 +2,8 @@
 my %tab=();
 my $valeur=0;
 $first_name=$ARGV[0];
-$filein ="< ../../data/UTRall/UTRallM14_NoRO_".$first_name."u.txt";
-$fileout =" > ../mergeallM14_NoRO_".$first_name.".txt";
+$filein ="< ../all3UTR_M14".$first_name."u.txt";
+$fileout =" > ../merge_all3UTR_M14".$first_name.".txt";
 open (FIC_OP2, $fileout);		
 open (MET ,$filein );
 	my @ligne=<MET>;
@@ -12,11 +12,6 @@ open (MET ,$filein );
 			#
 			my @j=split (/\t+/,$ligne[$i]);	
 
-			
-			$j[2]=~s/\/media\/ottis\/Data\/NewRNAseqAnalysis\/IS_2014ref\/analysis\///g;
-			$j[2]=~s/Olfr3UTR_AnnIso_M14\///g;
-			$j[2]=~s/_iso_annotation.tmp//g;
-			print "$j[2]\n";
 			
 			my $key=$j[0]."/".$j[2];
 			

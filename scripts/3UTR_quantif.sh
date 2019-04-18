@@ -1,7 +1,6 @@
 #!/bin/bash -ex
 
-
-
+# First arg is the merge_radius, second is fold_change
 for bamFile in ../analysis/align/*.bam
 do
 	baseId=$(basename $bamFile .bam)

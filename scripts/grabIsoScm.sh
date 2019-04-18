@@ -14,9 +14,7 @@ mkdir tmpDir
 bedtools merge  -d 100 -c 4,5,6 -o distinct,mean,distinct -i tmpDir/tmpBedFromGtfFile.bed > tmpDir/mergedBed.bed
 # Count the number of OR genes overlapping each assembled transcript
 bedtools intersect  -c   -a   tmpDir/tmpBedFromGtfFile.bed -b $3  > tmpDir/countOverlap.bed
-#cp tmpDir/mergedBed.bed bedtmp/${bedtemp}mergedBed.bed
-#cp tmpDir/countOverlap.bed bedtmp/${bedtemp}countOverlap.bed
-# These reads are bad: too many transcripts
+#
 awk -F"\t" '$7 > 1 {print $0}' tmpDir/countOverlap.bed | cut -f-6 > tmpDir/badPos.bed
 #cp tmpDir/badPos.bed bedtmp/${bedtemp}badPos.bed
 bedtools intersect -s -u -a $3 -b tmpDir/badPos.bed | awk '{print $4}' > $2/${baseName}_fusedGenes.txt
@@ -24,8 +22,7 @@ bedtools intersect -s -u -a $3 -b tmpDir/badPos.bed | awk '{print $4}' > $2/${ba
 awk -F"\t" '$7 == 1 {print $0}' tmpDir/countOverlap.bed | awk '{print $4}' > $2/${baseName}_goodLocus.txt
 #awk -F"\t" '$7 > 1 {print $0}' tmpDir/countOverlap.bed | awk '{print $4}' >  tmpDir/badPos2.bed
 awk -F"\t" '$7 > 1 {print $0}' tmpDir/countOverlap.bed | awk '{print $4}' >  $2/${baseName}_badLocus.txt
-#sort -u tmpDir/badPos2.bed > $2/${baseName}_badLocus.txt
-#grep -f $2/${baseName}_goodLocus.txt $1 | sort -k1,1 -k4,4 > $2/${baseName}_annotation.gtf 
+
 grep -vf $2/${baseName}_badLocus.txt $1 | sort -k1,1 -k4,4 > $2/${baseName}_annotation.gtf
 # Do the isoforms
 echo "Base name is ${baseName}.isoforms.gtf"

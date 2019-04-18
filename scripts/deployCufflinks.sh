@@ -1,4 +1,5 @@
 #!/bin/bash -ex
+#
 dir=${PWD}
 diranalysis=${dir//scripts/analysis}
 mkdir -p cufflinks_M14

@@ -1,4 +1,5 @@
 #!/bin/sh -ex
+# First arg is the fastq folder
 diranalysis=$1
 echo "$diranalysis"
 rnaSeq() {

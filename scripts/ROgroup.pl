@@ -22,9 +22,9 @@
 	
 	my @ligne2=<FIC_OP>;
 	
-	open (FIC_OP2,"> ../ROCDSconsecutiveCluster_transcriptM14V9.txt");
-	open (FIC_OP3,"> ../mask_subcluster.M14V9.bed");
-	open (FIC_OP4,"> ../ClusterFrontiereListe.M14V9.txt");
+	open (FIC_OP2,"> ../ROCDSconsecutiveCluster_transcriptM14.txt");
+	open (FIC_OP3,"> ../mask_subcluster.bed");
+	open (FIC_OP4,"> ../ClusterFrontiereListe.M14.txt");
 	my $gene_start=0;
 	my $gene_stop=0;
 	my $InROflag=0; 

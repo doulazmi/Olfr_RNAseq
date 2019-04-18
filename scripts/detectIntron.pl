@@ -4,7 +4,8 @@
 $fileout =" > ../../results/female23.M14_0.1intron.bed";
 
 open (FIC_OP2, $fileout);
-open (MET ," < ../female23.M14_0.1anno.bed");
+open (MET ," < ../female23.M14_0.1_.bed");
+
 my @ligne=<MET>;
 for (my $i=0; $i<=$#ligne; $i++){
 	chomp $ligne[$i];
@@ -14,7 +15,7 @@ for (my $i=0; $i<=$#ligne; $i++){
 	$cuff2sign{$k[3]}="$k[4]\t$k[5]\t$k[6]\t";
 	#
 	
-}
+	}
 
 close MET;
 
