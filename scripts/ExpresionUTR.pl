@@ -23,16 +23,16 @@ open (MET ,$filein );
 			
 			@valeur=split (/\_+/,$j[3]);
 			
-			#if ($valeur[1] > 0) {print "$valeur[1]\n";}
-			$cle=$valeur[0];
+			
+			$key=$valeur[0];
 			if ($valeur[1] > 0) {
-								if (exists $tab{$cle}) {
+								if (exists $tab{$key}) {
 														$valeur2="$valeur[1]:$j[6]";
-														$tab{$cle}.=" ".$valeur2;
+														$tab{$key}.=" ".$valeur2;
 														}
 								else {
 									$valeur2="$valeur[1]:$j[6]";
-									$tab{$cle}=$valeur2;
+									$tab{$key}=$valeur2;
 									}
 								}
 							$ligne_avant =$ligne[$i]};
@@ -41,13 +41,13 @@ open (MET ,$filein );
   close MET;
   
   	@liste_cles =  keys %tab;
-	foreach $cle ( @liste_cles)
+	foreach $key ( @liste_cles)
 			{$quantif=0;
 			$exprTotl=0;
 			$abond=0;
 			$utr_avant=0;
 
-				my @j=split (/\s+/,$tab{$cle});
+				my @j=split (/\s+/,$tab{$key});
 				$lastindex=@j;
 				$k=$lastindex-1;
 				$quantif=0;
@@ -55,9 +55,9 @@ open (MET ,$filein );
 				while ($k > -1) {
 					@q= split (/\:+/,$j[$k]);
 					
-					$cle2=$q[0];
+					$key2=$q[0];
 					$tabutr[$k]=$q[0];
-					$tab2{$cle2}=$q[1];
+					$tab2{$key2}=$q[1];
 					$k--;
 					 }
 				@tabutr= sort { $a <=> $b } @tabutr;
@@ -68,7 +68,7 @@ open (MET ,$filein );
 				if ($segment_utr!=0){$exp[$i]=$quant/$segment_utr;}
 				
 				
-				$utrprint[$i]="$cle\t$tabutr[$i]\t$segment_utr\t$quant\t$exp[$i]\t";
+				$utrprint[$i]="$key\t$tabutr[$i]\t$segment_utr\t$quant\t$exp[$i]\t";
 				#$exp[$i]=$tab2{$tabutr[$i]}/$tabutr[$i];
 				$quantif=$tab2{$tabutr[$i]};
 				$utr_avant=$tabutr[$i];

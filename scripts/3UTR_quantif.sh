@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-#mkdir -p ${outPref}_${pIntron}
+
 
 for bamFile in ../analysis/align/*.bam
 do

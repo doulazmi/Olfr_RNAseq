@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w 
-#recheche des ites polyAadq version 1.0
+
 use strict;
 use warnings;
 use HTTP::Request::Common qw(POST);

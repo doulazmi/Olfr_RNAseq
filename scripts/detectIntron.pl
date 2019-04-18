@@ -12,7 +12,7 @@ for (my $i=0; $i<=$#ligne; $i++){
 	$cuff2olfr{$k[3]}=$k[11];
 	$cuff2chr{$k[3]}=$k[0];
 	$cuff2sign{$k[3]}="$k[4]\t$k[5]\t$k[6]\t";
-	#print "$k[11]->$k[3]\n";
+	#
 	
 }
 

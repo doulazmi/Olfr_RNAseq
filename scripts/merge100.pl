@@ -9,42 +9,33 @@ open (MET ,$filein );
 	my @ligne=<MET>;
 	for (my $i=0; $i<=$#ligne; $i++){
 		chop$ligne[$i];
-			#Male_female_PRJEB1365
+			#
 			my @j=split (/\t+/,$ligne[$i]);	
 
-			#$j[2]=~s/\/media\/ottis\/Data\/NewRNAseqAnalysis\/PRJEB5984_C57bl6_10w\/analysis\///g;
-			#$j[2]=~s/\/media\/ottis\/Data\/NewRNAseqAnalysis\/Male_female_PRJEB1365\/analysis\///g;
-			#$j[2]=~s/\/media\/ottis\/Data\/NewRNAseqAnalysis\/IS_2017\/analysis\///g;
+			
 			$j[2]=~s/\/media\/ottis\/Data\/NewRNAseqAnalysis\/IS_2014ref\/analysis\///g;
 			$j[2]=~s/Olfr3UTR_AnnIso_M14\///g;
 			$j[2]=~s/_iso_annotation.tmp//g;
 			print "$j[2]\n";
-			# $j[2]=~s/MOE\d/23/g;
-			 #$j[2]=~s/.M14//g;
-			# $j[2]=~s/ERR\d+//g;
-			# $j[2]=~s/[mM]ale//g;
-			# $j[2]=~s/[fF]e//g;
-			# $j[2]=~s/[kK]anageswaran//g;
-			# $j[2]=~s/__/_/g;
-			# $j[2]=~s/a//g;
-			my $cle=$j[0]."/".$j[2];
+			
+			my $key=$j[0]."/".$j[2];
 			
 			$valeur=$j[1];
 	if ($valeur > 0) {
-	if ( exists $tab{$cle}) {
-			$tab{$cle}.=" ".$valeur;}
-	else {$tab{$cle}=$valeur;}
+	if ( exists $tab{$key}) {
+			$tab{$key}.=" ".$valeur;}
+	else {$tab{$key}=$valeur;}
 	}
 
 		}
 
   close MET;
   
-  	@liste_cles =  keys %tab;
-	foreach $cle ( keys %tab)
-			{print FIC_OP2 "$cle\t";
+  	@list_keys =  keys %tab;
+	foreach $key ( keys %tab)
+			{print FIC_OP2 "$key\t";
 
-				my @j=split (/\s+/,$tab{$cle});
+				my @j=split (/\s+/,$tab{$key});
 				$number=1;
 
 				@sortedj=@j;
