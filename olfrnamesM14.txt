@@ -1,5 +1,5 @@
-Olfr1
 Olfr10
+Olfr1
 Olfr1000
 Olfr1002
 Olfr1006
