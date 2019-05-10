@@ -1,20 +1,31 @@
-#!/usr/bin/perl 	
-my %tab=();
+########################################################################
+#
+# Copyright (C) 2019  Institut de Biologie Paris-Seine
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#####################################################################	
+my %tab=();#hach table for Olfr stop position
 $first_name=$ARGV[0];
-open (MET ,"< ../OlfrSTOPM14.txt");
-my @ligne=<MET>;
-for (my $i=0; $i<=$#ligne; $i++){
+open (MET ,"< ../OlfrSTOPM14.txt");#file for Olfr stop coordinate
+my @line=<MET>;
+for (my $i=0; $i<=$#line; $i++){
 	my @j=split (/\s+/,$ligne[$i]);	   		   			   
-	$key=$j[0];
-	$key=~s/\t+//g;
-	$j[3]=~s/\s+//g;
-			    
 	if ($j[3] eq "-") {
-		$tab{$key}=$j[2];
+		$tab{$j[0]}=$j[2];
 		}
-			
 	else {
-		$tab{$key}=$j[1];
+		$tab{$j[0]}=$j[1];
 	}		  
 		
   }
@@ -25,19 +36,17 @@ open (FIC_OP,"< $first_name");
 my @line=<FIC_OP>;
 $fileUTR=$first_name;
 $fileUTR=~s/.tmp//;
-$fileUTR=$fileUTR."Iso3UTR.bed";
+$fileUTR.="Iso3UTR.bed";
 open (FIC_OP3,">> ../analysis/UTRallM14_NoRO.txt");
-open (FIC_OP2,"> $fileUTR");
+open (FIC_OP2,"> $fileUTR"); 
 	
 for (my $index=0; $index <=$#line; $index++){
 	chomp ($line[$index]);		
 	$UTR=0;
 	my @k=split (/\t+/,$line[$index]);
     @nameseq= split (/;/,$k[4]);
-	$nameseq[3]=~s/type //;
-	$nameseq[3]=~s/"//g;
-	#print "$k[3] $nameseq[3]\n";
-	if ($nameseq[3] eq '3p_exon'){
+	$nameseq[3]=~s/"type //g;
+		if ($nameseq[3] eq '3p_exon'){
 		print FIC_OP2 "$k[0]\t";
 		if ($k[6] eq "-") { 
 			print FIC_OP2 "$k[1]\t"; 
