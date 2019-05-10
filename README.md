@@ -54,9 +54,31 @@ samtools index MskedFile.bam
 Generating the annotation and isoforms with IsoSCM
 The script used here is deployIsoscm.sh and assumes every file file.bam in analysis/align has been masked using applyMaskTobam.sh file.bam masked_file.bam
 
-deployAnnoTation.sh (grabIsoScm.sh) filters a requested subset of the assembled gene models, checks if fused genes are present, and creates 4 different files: the clean annotation and isoforms, the unfused IsoSCM locus (*_goodLocus.txt) and the Ensembl IDs of fused genes (*_fusedGenes.txt)
+java -Xmx6g -jar IsoSCM-2.0.9.jar assemble -bam $bamFile -base $baseId -s unstranded -dir ${outPref} -merge_radius 100 -jnct_alpha 0.05 -min_fold 0.8
+
+Use the assemble command to generate our gene models, and then enumerate -max_isoforms 20 to get a  isoforms
+java -Xmx6g -jar IsoSCM-2.0.9.jar enumerate -max_isoforms 20 -x ${outPref}/${baseId}.assembly_parameters.xml
 
 
 # Assembly with Cufflinks
+-------
+Cufflinks the program assembles transcriptomes from RNA-Seq data and quantifies their expression.
+The script used here is deployCufflinks.sh
+
+#Generating the annotation 
+-------
+The script used here is deployAnnoTation.sh (grabIsoScm.sh) filters a requested subset of the assembled gene models, checks if fused genes are present, and creates 4 different files: the clean annotation and isoforms, the unfused IsoSCM locus (*_goodLocus.txt) and the Ensembl IDs of fused genes (*_fusedGenes.txt) then assign the correct gene name to the models . 
+
+*Generating the 3'UTR annotation
+-------
+The script used here is 3UTR_annotation.sh Identify 3'and 5' UTRs (using the start and stop codon + strand of the transcript) and generate the bed file foreach alternative isoforms of olfrs.
+
+*3UTR PAS associated
+-------
+pa_detection.pl was used to detect the AAUAAA/AUUAAA canonical PASs
+
+*Quantification of the 3’UTR isoforms
+-------
+merge100.pl was used to merge of 3’UTR isoforms from the same gene when 3’ ends are distant from less than 100 nt
 
 

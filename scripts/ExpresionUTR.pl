@@ -1,7 +1,7 @@
 #!/usr/bin/perl 	
 my %tab=();
 my %tab2=();
-my $valeur=0;
+my $value=0;
 my $ligne_before="";
 
 
@@ -23,18 +23,18 @@ open (MET ,$filein );
 			@j=split (/\t+/,$ligne[$i]);	
 			
 			
-			@valeur=split (/\_+/,$j[3]);
+			@value=split (/\_+/,$j[3]);
 			
 			
-			$key=$valeur[0];
-			if ($valeur[1] > 0) {
+			$key=$value[0];
+			if ($value[1] > 0) {
 								if (exists $tab{$key}) {
-														$valeur2="$valeur[1]:$j[6]";
-														$tab{$key}.=" ".$valeur2;
+														$value2="$value[1]:$j[6]";
+														$tab{$key}.=" ".$value2;
 														}
 								else {
-									$valeur2="$valeur[1]:$j[6]";
-									$tab{$key}=$valeur2;
+									$value2="$value[1]:$j[6]";
+									$tab{$key}=$value2;
 									}
 								}
 							$ligne_before =$ligne[$i]};
@@ -71,15 +71,14 @@ open (MET ,$filein );
 				
 				
 				$utrprint[$i]="$key\t$tabutr[$i]\t$segment_utr\t$quant\t$exp[$i]\t";
-				#$exp[$i]=$tab2{$tabutr[$i]}/$tabutr[$i];
+				
 				$quantif=$tab2{$tabutr[$i]};
 				$utr_before=$tabutr[$i];
 				}
 				for ($i=$lastindex-1; $i> -1; $i--){
 
 				$exp2[$i]=$exp[$i]-$abond;
-				#$percent=$exp2[$i]/$exprTotl;
-				#print "$utrprint[$i]$exp2[$i]\t$percent\n";
+				
 				$exprTotl =$exprTotl + $exp2[$i];
 				$abond=$exp2[$i];
 				}

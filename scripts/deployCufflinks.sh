@@ -1,7 +1,7 @@
 #!/bin/bash -ex
 #
 dir=${PWD}
-diranalysis=${dir//scripts/analysis}
+diranalysis=${dir}/scripts/analysis
 mkdir -p cufflinks_M14
 for min_isoform in `seq 0.2 0.1 1`;
 	do
