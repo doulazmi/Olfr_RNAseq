@@ -1,10 +1,28 @@
-%tabolfr='';
+#######################################################################
+#
+# Copyright (C) 2019  Institut de Biologie Paris-Seine
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#####################################################################   
+
 %nblines='';
 %cuff2olfr='';
-$fileout =" > ../../results/female23.M14_0.1intron.bed";
+$fileout =" > ../../results/male23_3UTR_intron.bed";
 
 open (FIC_OP2, $fileout);
-open (MET ," < ../female23.M14_0.1_.bed");
+open (MET ," < ../male23.intron.bed "); #the file is generate with regtools  junctions extract -o male23.intron.bed male23.masked.bam
+										
 
 my @ligne=<MET>;
 for (my $i=0; $i<=$#ligne; $i++){
